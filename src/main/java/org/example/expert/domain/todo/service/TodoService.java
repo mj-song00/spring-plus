@@ -12,6 +12,6 @@ import java.time.LocalDateTime;
 public interface TodoService {
 
   TodoSaveResponse saveTodo(AuthUser authUser, TodoSaveRequest todoSaveRequest);
-  Page<TodoResponse> getTodos(int page, int size, String weather, LocalDateTime start, LocalDateTime modify);
+  Page<TodoResponse> getTodos(int page, int size, String weather, LocalDateTime start, LocalDateTime end);
   TodoResponse getTodo(long todoId);
 }

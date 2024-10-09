@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-import static org.example.expert.domain.todo.entity.QTodo.todo;
 
 @Service
 @RequiredArgsConstructor
@@ -55,10 +54,11 @@ public class TodoServiceImpl  implements TodoService{
         );
     }
 
-    public Page<TodoResponse> getTodos(int page, int size, String weather, LocalDateTime start, LocalDateTime modify) {
+    public Page<TodoResponse> getTodos(int page, int size, String weather, LocalDateTime start, LocalDateTime end) {
+        System.out.println("start = " + start);
         Pageable pageable = PageRequest.of(page - 1, size);
 
-        Page<Todo> todos = todoRepository.findAllByOrderByModifiedAtDesc(pageable, weather, start, modify);
+        Page<Todo> todos = todoRepository.findAllByOrderByModifiedAtDesc(pageable, weather, start, end);
 
         return todos.map(todo -> new TodoResponse(
                 todo.getId(),
